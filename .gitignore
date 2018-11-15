@@ -1,0 +1,27 @@
+# ignore these files
+*.class
+/*/.classpath
+.classpath
+.project
+/Servers/
+.metadata/
+RemoteSystemsTempFiles/
+/*/target/
+/*/.settings/
+/*/*/.settings/
+/*/*/target/
+.recommenders
+/temp/
+/logs/
+.idea/
+
+# IntelliJ
+*.iml
+/*/*.iml
+*.ipr
+*.iws
+.idea/
+out/
+
+
+
