@@ -184,13 +184,17 @@ public class DateUtils {
 		d2 = cleanDate(d2);
 		long day1 = d1.getTime();
 		long day2 = d2.getTime();
+		return getInts(day1,day2);
+	}
+
+	private static int[] getInts (long l1, long l2){
 		int[] ints = new int[2];
 		long between = 0;
-		if (day1 > day2) {
-			between = (day1 - day2) / (24 * 60 * 60 * 1000);
+		if (l1 > l2) {
+			between = (l1 - l2) / (24 * 60 * 60 * 1000);
 			ints[0] = 1;
-		} else if (day2 > day1) {
-			between = (day2 - day1) / (24 * 60 * 60 * 1000);
+		} else if (l2 > l1) {
+			between = (l2 - l1) / (24 * 60 * 60 * 1000);
 			ints[0] = -1;
 		} else {
 			between = 0;
@@ -212,25 +216,9 @@ public class DateUtils {
 	 *         为 差距天数
 	 */
 	public static int[] getFullDaybetweenTwoDate(Date d1, Date d2) {
-		int[] ints = new int[2];
 		long day1 = d1.getTime();
 		long day2 = d2.getTime();
-		long between = 0;
-		if (day1 > day2) {
-			between = (day1 - day2) / (24 * 60 * 60 * 1000);
-			ints[0] = 1;
-		} else if (day2 > day1) {
-			between = (day2 - day1) / (24 * 60 * 60 * 1000);
-			ints[0] = -1;
-		} else {
-			between = 0;
-			ints[0] = 0;
-		}
-		if (between == 0) {
-			ints[0] = 0;
-		}
-		ints[1] = (int) between;
-		return ints;
+		return getInts(day1,day2);
 	}
 
 	/**
@@ -244,27 +232,11 @@ public class DateUtils {
 	public static int[] getDaybetweenTwoDate(long l1, long l2) {
 		Date d1 = new Date(l1);
 		Date d2 = new Date(l2);
-		int[] ints = new int[2];
 		d1 = cleanDate(d1);
 		d2 = cleanDate(d2);
 		long day1 = d1.getTime();
 		long day2 = d2.getTime();
-		long between = 0;
-		if (day1 > day2) {
-			between = (day1 - day2) / (24 * 60 * 60 * 1000);
-			ints[0] = 1;
-		} else if (day2 > day1) {
-			between = (day2 - day1) / (24 * 60 * 60 * 1000);
-			ints[0] = -1;
-		} else {
-			between = 0;
-			ints[0] = 0;
-		}
-		if (between == 0) {
-			ints[0] = 0;
-		}
-		ints[1] = (int) between;
-		return ints;
+		return getInts(day1,day2);
 	}
 	
 	/**
@@ -278,25 +250,9 @@ public class DateUtils {
 	public static int[] getFullDaybetweenTwoDate(long l1, long l2) {
 		Date d1 = new Date(l1);
 		Date d2 = new Date(l2);
-		int[] ints = new int[2];
 		long day1 = d1.getTime();
 		long day2 = d2.getTime();
-		long between = 0;
-		if (day1 > day2) {
-			between = (day1 - day2) / (24 * 60 * 60 * 1000);
-			ints[0] = 1;
-		} else if (day2 > day1) {
-			between = (day2 - day1) / (24 * 60 * 60 * 1000);
-			ints[0] = -1;
-		} else {
-			between = 0;
-			ints[0] = 0;
-		}
-		if (between == 0) {
-			ints[0] = 0;
-		}
-		ints[1] = (int) between;
-		return ints;
+		return getInts(day1,day2);
 	}
 
 	/**
@@ -439,23 +395,6 @@ public class DateUtils {
 		calendar.set(Calendar.SECOND,0);
 		return sdf.format(calendar.getTime());
 	}
-	
-//	public static void main(String[] args) {
-////		System.out.println(DateUtils.getMonthsBeginDate());
-////		System.out.println(DateUtils.getMonthsEnd());
-//		
-////		Date d1 = getBeforeTime(DAY, new Date(), 1);
-////		Date d2 = new Date();
-////		long[] ls =  getSubHMSStrByDates(d2, d1);
-////		for(long l : ls){
-////			System.out.println(l);
-////		}
-//		 String getLastMonthBeginTime = getLastMonthBeginTime("yyyy-MM-dd",new Date());
-//		 String getLastMonthEndTimeTime = getLastMonthEndTime("yyyy-MM-dd",new Date());
-//		System.out.println(getLastMonthBeginTime);
-//		System.out.println(getLastMonthEndTimeTime);
-////		System.out.println(parseDateForStandard(getBeforeTime(Calendar.MONTH, new Date(), 24)));
-//	}
 	
 	/**
 	 * @param startDate
@@ -702,5 +641,22 @@ public class DateUtils {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");  
         //fmt.setTimeZone(new TimeZone()); // 如果需要设置时间区域，可以在这里设置  
         return fmt.format(d1).equals(fmt.format(d2));  
-    }  
+    }
+
+//	public static void main(String[] args) {
+////		System.out.println(DateUtils.getMonthsBeginDate());
+////		System.out.println(DateUtils.getMonthsEnd());
+//
+////		Date d1 = getBeforeTime(DAY, new Date(), 1);
+////		Date d2 = new Date();
+////		long[] ls =  getSubHMSStrByDates(d2, d1);
+////		for(long l : ls){
+////			System.out.println(l);
+////		}
+//		 String getLastMonthBeginTime = getLastMonthBeginTime("yyyy-MM-dd",new Date());
+//		 String getLastMonthEndTimeTime = getLastMonthEndTime("yyyy-MM-dd",new Date());
+//		System.out.println(getLastMonthBeginTime);
+//		System.out.println(getLastMonthEndTimeTime);
+////		System.out.println(parseDateForStandard(getBeforeTime(Calendar.MONTH, new Date(), 24)));
+//	}
 }
